@@ -47,6 +47,22 @@ public class Queen implements Piece {
 
     @Override
     public boolean getMoveRule(Piece[][] board, Piece pieceBeingMoved, int[] startPosition, int[] newPosition) {
-        return false;
+        boolean isValid = true;
+
+        if ((Math.abs(startPosition[0] - newPosition[0]) == 0 && Math.abs(startPosition[1] - newPosition[1]) == 1) ||
+                (Math.abs(startPosition[0] - newPosition[0]) == 1 && Math.abs(startPosition[1] - newPosition[1]) == 0) ||
+                (Math.abs(startPosition[0] - newPosition[0]) == Math.abs(startPosition[1] - newPosition[1])) &&
+                        board[newPosition[0]][newPosition[1]].getAllegiance() != this.allegiance) {
+            for (int i = startPosition[0] + 1; i < newPosition[0]; i++) {
+                    for (int j = startPosition[1] + 1; j < newPosition[1]; j++) {
+                        if (board[i][j].getPieceName() != " ") {
+                        isValid = false;
+                    }
+                }
+            }
+
+        }
+
+        return isValid;
     }
 }

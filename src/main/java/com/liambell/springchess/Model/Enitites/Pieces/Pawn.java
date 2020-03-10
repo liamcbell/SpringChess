@@ -60,9 +60,9 @@ public class Pawn implements Piece {
         //Movement of once forward space if it is empty
         //Moving diagonal in either direction if there is an enemy.
         if (board[newPosition[0]][newPosition[1]].getAllegiance() != this.allegiance) {
-            if (startPosition[1] == 1 && newPosition[1] == 3 && board[startPosition[0]][2].getPieceName() == " ") {
+            if ((startPosition[1] == 1 && newPosition[1] == 3) ||(startPosition[1] == 6 && newPosition[1] == 4) && board[startPosition[0]][2].getPieceName() == " ") {
                 isValid = true;
-            } else if (newPosition[1] - startPosition[1] == movementRule[0][0] &&
+            } else if (Math.abs(newPosition[1] - startPosition[1]) == movementRule[0][0] &&
                     board[newPosition[0]][newPosition[1]].getPieceName() == " "
             ) {
                 isValid = true;
@@ -75,16 +75,5 @@ public class Pawn implements Piece {
         }
         return isValid;
     }
-
-    public boolean getMoveRule(Piece[][] board, Piece pieceBeingMoved, int[][] startPosition, int[][] newPosition) {
-        boolean isValid = false;
-        if (newPosition[0][0] - startPosition[0][0] == movementRule[0][1] &&
-            board[newPosition[0][0]][newPosition[0][1]].getPieceName() == "E"
-        ) {
-            isValid = true;
-        }
-        return isValid;
-    }
-
 
 }
