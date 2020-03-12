@@ -11,7 +11,7 @@ public class MovementService {
         iterator:
             if (direction == "Vertical") {
                 for (int i = basePositionY; i <= endPositionY; i++) {
-                    if (board[i][basePositionX].getPieceName() != allegiance) {
+                    if (board[i][basePositionX].getAllegiance() != allegiance || board[i][basePositionX].getPieceName() == " ") {
                         isClearPath = true;
                     } else if (endPositionY - basePositionY != 1) {
                         break iterator;
@@ -19,7 +19,7 @@ public class MovementService {
                 }
             } else if (direction == "Horizontal") {
                 for (int i = basePositionX; i <= endPositionX; i++) {
-                    if (board[basePositionY][i].getPieceName() != allegiance && i > 1 ) {
+                    if (board[basePositionY][i].getAllegiance() != allegiance && i > 1 || board[basePositionY][i].getPieceName() == " ") {
                         isClearPath = true;
                     } else if (endPositionX - basePositionX != 1) {
                         break iterator;
