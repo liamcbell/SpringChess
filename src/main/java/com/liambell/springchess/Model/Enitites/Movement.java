@@ -4,7 +4,7 @@ public interface Movement {
 
     public void setMoveRule();
 
-    public boolean getMoveRule(Piece[][] board, Piece pieceBeingMoved,
+    public boolean isValidMove(Piece[][] board, Piece pieceBeingMoved,
                                int[] startPosition, int[] newPosition);
 
 

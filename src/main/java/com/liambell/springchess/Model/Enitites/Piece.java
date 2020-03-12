@@ -2,7 +2,7 @@ package com.liambell.springchess.Model.Enitites;
 
 import org.springframework.stereotype.Component;
 
-public interface Piece extends Movement {
+public class Piece implements Movement {
 
     //Hashing out the Piece properties as a whole before narrowing down on a piece by piece basis.
     /* Commonalities:
@@ -12,20 +12,31 @@ public interface Piece extends Movement {
         All pieces have the ability to move
     */
 
-    public int[][] getPiecePosition();
+    private String allegiance;
+    private String pieceName;
 
-    public void setPiecePosition(int[][] piecePosition);
 
+    public String getAllegiance() {
+        return this.allegiance;
+    };
 
-    //Will be utilized for AI movement and player move limiters.
-    public int [][][] getPieceMovementRules();
+    public String getPieceName() {
+        return this.pieceName;
+    };
 
-    //If I decide to allow the creation of new pieces or rules for existing pieces.
-    public int [][][] setPieceMovementRules();
-    public String getAllegiance();
+    @Override
+    public void setMoveRule() {
 
-    public String getPieceName();
+    }
 
+    @Override
+    public boolean isValidMove(Piece[][] board, Piece pieceBeingMoved, int[] startPosition, int[] newPosition) {
+        return false;
+    }
+
+    public Piece() {
+
+    }
 
 
 }

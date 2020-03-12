@@ -2,53 +2,22 @@ package com.liambell.springchess.Model.Enitites.Pieces;
 
 import com.liambell.springchess.Model.Enitites.Piece;
 
-public class King implements Piece {
+public class King extends Piece {
     String allegiance;
     String pieceName = "K";
-    @Override
-    public int[][] getPiecePosition() {
-        return new int[0][];
-    }
 
-    @Override
-    public void setPiecePosition(int[][] piecePosition) {
 
-    }
-
-    @Override
-    public int[][][] getPieceMovementRules() {
-        return new int[0][][];
-    }
-
-    @Override
-    public int[][][] setPieceMovementRules() {
-        return new int[0][][];
-    }
-
-    @Override
     public String getAllegiance() {
-        return null;
-    }
+        return this.allegiance;
+    };
 
-    @Override
     public String getPieceName() {
         return this.pieceName;
-    }
-
-    public King(String allegiance) {
-        this.allegiance = allegiance;
-    }
+    };
 
     @Override
-    public void setMoveRule() {
-
-    }
-
-    @Override
-    public boolean getMoveRule(Piece[][] board, Piece pieceBeingMoved, int[] startPosition, int[] newPosition) {
-
+    public boolean isValidMove(Piece[][] board, Piece pieceBeingMoved, int[] startPosition, int[] newPosition) {
         boolean isValid = false;
-
         if ((Math.abs(startPosition[0] - newPosition[0]) == 1 ||
                 Math.abs(startPosition[0] - newPosition[0]) == 0 ) &&
                 (Math.abs(startPosition[1] - newPosition[1]) == 1 ||
@@ -56,7 +25,10 @@ public class King implements Piece {
                 board[newPosition[0]][newPosition[1]].getAllegiance() != this.allegiance) {
             isValid = true;
         }
-
         return isValid;
+    }
+
+    public King(String allegiance) {
+        this.allegiance = allegiance;
     }
 }
