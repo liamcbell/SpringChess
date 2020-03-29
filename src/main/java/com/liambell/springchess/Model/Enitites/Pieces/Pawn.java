@@ -31,8 +31,8 @@ public class Pawn extends Piece {
                 isValid = true;
             } else if (Math.abs(newPosition[1] - startPosition[1]) == movementRule[0][0] &&
                     board[newPosition[0]][newPosition[1]].getPieceName() == " "
-            ) {
-                isValid = true;
+                ) {
+                    isValid = true;
             } else if (Math.abs(newPosition[1] - startPosition[1]) == 1) {
                 if (board[newPosition[0]][newPosition[1]].getPieceName() != " " &&
                         !this.allegiance.equals(allegiance)) {

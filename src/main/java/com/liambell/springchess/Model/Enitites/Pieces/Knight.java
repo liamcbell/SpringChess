@@ -19,13 +19,10 @@ public class Knight extends Piece {
     @Override
     public boolean isValidMove(Piece[][] board, Piece pieceBeingMoved, int[] startPosition, int[] newPosition) {
         boolean isValid = false;
-
         if ((Math.abs(newPosition[1] - startPosition[1]) == 1 && Math.abs(newPosition[0] - startPosition[0]) == 2) ||
                 (Math.abs(newPosition[1] - startPosition[1]) == 2 && Math.abs(newPosition[0] - startPosition[0]) == 1) && board[newPosition[0]][newPosition[1]].getAllegiance() != this.allegiance) {
-
             isValid = board[newPosition[0]][newPosition[1]].getAllegiance() != this.allegiance ? true : false;
         }
-
         return isValid;
     }
 

@@ -2,6 +2,7 @@ package com.liambell.springchess.Model.Services;
 
 import com.liambell.springchess.Model.Enitites.Board;
 import com.liambell.springchess.Model.Enitites.Piece;
+import com.liambell.springchess.Model.Enitites.Pieces.CustomPiece;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +11,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.stream.IntStream;
 
 @Service
 public class GameService {
 
     @Autowired
     Board board;
-
+    HashMap<String, CustomPiece> allCustomPieces = new HashMap<>();
     public Piece[][] loadInitialGameState() {
         return board.loadDefaultChessConfiguration();
     }
@@ -35,7 +38,6 @@ public class GameService {
             do any pieces from the opposing allegiance have a direct path to the king based on their rules?
          */
         int[] kingLocation = new int[2];
-        String whiteAllegiance = "White";
         boolean isKingInCheck = false;
         //Get location of White King
         //Refactor later to pass in current player allegiance
@@ -69,7 +71,6 @@ public class GameService {
                 }
             }
         }
-
         return isKingInCheck;
     }
 
@@ -97,5 +98,20 @@ public class GameService {
         return movement;
     }
 
+    public void createCustomPiece(HashMap<Integer, Integer[][]> movementRules, String pieceName) {
+        CustomPiece customPiece = new CustomPiece(movementRules, pieceName);
+        allCustomPieces.put(customPiece.getPieceName(), customPiece);
+    }
 
+    public CustomPiece getCustomPieceByName(String pieceName) {
+        CustomPiece customPiece = new CustomPiece();
+        loop:
+        for (int i =0 ; i < allCustomPieces.size(); i++) {
+            if (allCustomPieces.get(i).getPieceName() == pieceName) {
+                customPiece = allCustomPieces.get(i);
+                break loop;
+            }
+        }
+        return customPiece;
+    }
 }

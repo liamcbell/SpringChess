@@ -5,10 +5,7 @@ import com.liambell.springchess.Model.Enitites.Piece;
 import com.liambell.springchess.Model.Services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,6 +43,12 @@ public class GameController {
                 }
             }
         }
+    }
+
+    @RequestMapping(value = "/customPieceCreation", method = RequestMethod.POST)
+    public void createCustomPiece(@RequestParam HashMap<Integer, Integer[][]> movementRules, @RequestParam String pieceName) {
+        gameService.createCustomPiece(movementRules, pieceName);
+        System.out.println(gameService.getCustomPieceByName("Berserker"));
     }
 
 }
