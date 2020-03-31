@@ -1,0 +1,28 @@
+table {
+    min-width: 1000px;
+    min-height: 1000px;
+    background-color: blue;
+}
+
+tr {
+    width: 40px;
+    height: 40px;
+}
+
+td p {
+    justify-content: center;
+    text-align: center;
+    font-size: 2rem;
+    background-color: blue;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+
+.White {
+    background-color: white;
+}
+
+.Black {
+    background: black;
+}
